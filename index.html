@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Camera Access</title>
+</head>
+<body>
+  <h1>Camera Access</h1>
+  <button id="start-camera">Start Camera</button>
+  <video id="video" width="320" height="240" autoplay></video>
+
+  <script>
+    const video = document.getElementById('video');
+    const startCameraButton = document.getElementById('start-camera');
+
+    startCameraButton.addEventListener('click', async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (error) {
+        console.error('Error accessing camera:', error);
+      }
+    });
+  </script>
+</body>
+</html>
